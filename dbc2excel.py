@@ -34,14 +34,14 @@ class Main(QtWidgets.QWidget):
     def initUI(self):
         width=240
         height=128
-        q=QtWidgets.QDesktopWidget().availableGeometry()
-        x=(q.width()-width)/2
-        y=(q.height()-height)/2
+        #q=QtWidgets.QDesktopWidget().availableGeometry()
+        #x=(q.width()-width)/2
+        #y=(q.height()-height)/2
         
         self.setObjectName('MainWindow')
         self.setWindowTitle('dbc2excel')
         self.resize(width, height)
-        self.move(x, y)
+        #self.move(x, y)
         
         new_btn=QtWidgets.QPushButton('Создать новую таблицу', self)
         add_sheet_btn=QtWidgets.QPushButton('Добавить новый лист', self)
@@ -433,12 +433,17 @@ def DBC_open(path): #функция открытия файла .dbc и запи
 
                     #Начальный бит сигнала
                     signal_startbit=''
-                    i=i+3
+                    char=string[i]
+                    while char!=':':
+                        i=i+1
+                        char=string[i]
+                    i=i+2
                     char=string[i]
                     while char!='|':
                         signal_startbit=signal_startbit+char
                         i=i+1
                         char=string[i]
+                    #print(string)
                     #print(signal_startbit)
 
                     #Длина сигнала в битах
@@ -570,6 +575,7 @@ def DBC_open(path): #функция открытия файла .dbc и запи
                         string=file.readline()
                     file.seek(ukz)             
                 string=file.readline()
+                #print(signal_startbit, signal_length)
                 signals.append(DBC.signal(signal_name, int(signal_startbit), int(signal_length), float(signal_factor), float(signal_offset), signal_unit, sig_com, sig_value, signal_range))
             dbc.append(DBC.message(message_id, message_name, signals))              
         string=file.readline()
