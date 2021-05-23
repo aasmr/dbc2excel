@@ -1,7 +1,12 @@
 '''
 Created on 1 февр. 2019 г.
 
-@author: Инженер МГТУ им Н. Э. Баумана СМ10 Смирнов А. А. (мл.)
+@author: Smirnov Alexey
+Laboratory assistant 
+EC Group GAZ named after A. A. Lipgart
+Baumam Moscow State Technical University
+smirnov@bmstu.ru
+aasmr@ya.ru
 '''
 
 import openpyxl, sys, re
